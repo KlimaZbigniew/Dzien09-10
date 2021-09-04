@@ -27,10 +27,10 @@
             </asp:CheckBoxList>
         </div>
         <div>
-            <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
         </div>
         <div>
-            <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:DropDownList ID="DropDownList2" runat="server">
                 <asp:ListItem Value="R">Czerwony</asp:ListItem>
                 <asp:ListItem Value="G">Zielony</asp:ListItem>
                 <asp:ListItem Value="B">Niebieski</asp:ListItem>
@@ -50,7 +50,7 @@
         </div>
 
         <div>           
-            <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True">
                 <asp:ListItem>Opcja A</asp:ListItem>
                 <asp:ListItem>Opcja B</asp:ListItem>
                 <asp:ListItem>Opcja C</asp:ListItem>
