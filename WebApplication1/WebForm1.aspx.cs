@@ -16,5 +16,21 @@ namespace WebApplication1
                 Response.Redirect("~/Login");
             }
         }
+        public string GetDoctor(int doctorId)
+        {
+            switch (doctorId)
+            {
+                case 1:
+                    return "Lekarz 1";
+                case 2:
+                    return "Lekarz 2";
+                case 3:
+                    return "Lekarz 3";
+
+                default:
+                    return "---";
+                    break;
+            }
+        }
     }
 }
