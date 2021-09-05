@@ -5,7 +5,7 @@
 
     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/RegisterVisit1">Rejetracja</asp:HyperLink>
 
-    <asp:GridView ID="gridView" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+    <asp:GridView ID="gridView" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnRowCommand="gridView_RowCommand">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />
@@ -28,7 +28,23 @@
             <asp:BoundField DataField="visit_date" HeaderText="Data" SortExpression="visit_date" />
             <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
             <asp:BoundField DataField="descr" HeaderText="Opis" SortExpression="descr" />
-            <asp:BoundField DataField="image" HeaderText="Obraz" SortExpression="image" Visible="False" />
+            <asp:ImageField HeaderText="Obraz" 
+                NullDisplayText="Brak"
+                DataImageUrlField="image" 
+                DataImageUrlFormatString="~/Uploads/{0}" ControlStyle-Width="150px">
+                <ControlStyle Width="150px"></ControlStyle>
+            </asp:ImageField>
+            <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="EditVisit.aspx?id={0}" Text="Edytuj" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:Button ID="Button1"
+                        runat="server"
+                        CommandName="Delete"
+                        OnClientClick="return confirm('Czy chcesz usunąć rekord?')"
+                        CommandArgument='<%# Eval("id") %>'
+                        Text="Usuń" />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

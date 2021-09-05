@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,6 +32,26 @@ namespace WebApplication1
                 default:
                     return "---";
                     break;
+            }
+        }
+
+        protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("Delete"))
+            {
+                int rowId = Convert.ToInt32(e.CommandArgument);
+                string cs = ConfigurationManager.ConnectionStrings["edoctorConnectionString"].ConnectionString;
+                using (MySqlConnection conn = new MySqlConnection(cs))
+                {
+                    conn.Open();
+                    string sql = $"DELETE FROM visits WHERE id = {rowId}";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+
+                    //gridView.DataBind();
+                    Response.Redirect("~/WebForm1");
+
+                }
             }
         }
     }
